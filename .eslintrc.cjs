@@ -1,4 +1,3 @@
-import LazyImage from '@/components/ui/LazyImage';
 /** Minimal ESLint config to enforce LazyImage usage (via no-restricted-syntax) */
 module.exports = {
   root: true,
@@ -26,6 +25,6 @@ module.exports = {
   settings: {
     react: {
       version: 'detect'
-      }
+    }
   }
 };
