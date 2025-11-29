@@ -1,3 +1,4 @@
+import LazyImage from '@/components/ui/LazyImage';
 module.exports = {
   rules: {
     // A lightweight rule that warns when a JSX <img> tag is used, encouraging LazyImage usage
