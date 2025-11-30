@@ -42,6 +42,9 @@ export default function ClientComponent({
           }, 200);
         }}
         onError={(error) => {
+          // Log error for debugging/monitoring
+          console.error("VoiceProvider error", error);
+          // Also show a user-visible notification
           toast.error(error.message);
         }}
       >
