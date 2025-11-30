@@ -1,35 +1,27 @@
-"use client";
+import React from 'react';
 
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error;
-  reset: () => void;
-}) {
-  return (
-    <div className={"absolute inset-0 grid place-content-center"}>
-      <div className={"p-4 border border-border rounded-xl max-w-sm"}>
-        <div>
-          <h1 className={"text-foreground font-medium text-base"}>
-            An error occurred
-          </h1>
-          <p className={"text-muted-foreground text-sm"}>{error.message}</p>
-        </div>
-        <div className={"pt-4 flex gap-2"}>
-          <Button className={"rounded-full flex-1"} variant={"secondary"} asChild>
-            <Link href={"https://dev.hume.ai/"} target={"_blank"}>
-              View Documentation
-            </Link>
-          </Button>
-          <Button className={"rounded-full flex-1"} onClick={reset}>
-            Try again
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-}
+ type ErrorProps = {
+   error: Error;
+   reset: () => void;
+ };
+ 
+ export default function Error({ error, reset }: ErrorProps) {
+-  return (
+-    <html lang=\"en\">\n      <head>\n        <title>Server Error</title>\n      </head>\n      <body>\n        <h1>Server Error</h1>\n        <p>{error?.message ?? 'An unexpected server error occurred.'}</p>\n        <button onClick={() => reset()} style={{ marginTop: 16 }}>Retry</button>\n      </body>\n    </html>\n  );
++  const isProd = process.env.NODE_ENV === 'production';
++  const displayMessage = isProd
++    ? 'An unexpected server error occurred.'
++    : (error?.message ?? 'An unexpected server error occurred.');
++  return (
++    <html lang="en">
++      <head>
++        <title>Server Error</title>
++      </head>
++      <body>
++        <h1>Server Error</h1>
++        <p>{displayMessage}</p>
++        <button onClick={() => reset()} style={{ marginTop: 16 }}>Retry</button>
++      </body>
++    </html>
++  );
+ }
