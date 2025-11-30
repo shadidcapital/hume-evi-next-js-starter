@@ -32,14 +32,19 @@ export default function StartCall({ configId, accessToken }: { configId?: string
               <Button
                 className={"z-50 flex items-center gap-1.5 rounded-full"}
                 onClick={() => {
+                  if (!accessToken) {
+                    console.error("Chat StartCall: missing accessToken. Ensure token retrieval succeeded and environment variables are set.");
+                    toast.error("Cannot start call: access token is unavailable. Check environment configuration.");
+                    return;
+                  }
                   connect({ 
                     auth: { type: "accessToken", value: accessToken },
                     configId, 
-                    // additional options can be added here
-                    // like resumedChatGroupId and sessionSettings
                   })
                     .then(() => {})
-                    .catch(() => {
+                    .catch((err) => {
+                      // Avoid logging the raw token; redact it for safety
+                      console.error("Chat StartCall: failed to start call. Access token: [redacted]. Error:", err);
                       toast.error("Unable to start call");
                     })
                     .finally(() => {});

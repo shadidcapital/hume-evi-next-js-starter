@@ -42,6 +42,7 @@ export default function ClientComponent({
           }, 200);
         }}
         onError={(error) => {
+          console.error("Chat: VoiceProvider error", error);
           toast.error(error.message);
         }}
       >
