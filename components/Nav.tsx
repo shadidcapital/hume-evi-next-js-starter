@@ -1,3 +1,4 @@
+/* Nav component: top-right GitHub star + theme toggle. See how it integrates with layout and theming. */
 "use client";
 
 import { Button } from "./ui/button";
