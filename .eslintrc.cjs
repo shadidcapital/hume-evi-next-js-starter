@@ -1,6 +1,7 @@
 /** Minimal ESLint config to enforce LazyImage usage (via no-restricted-syntax) */
 module.exports = {
   root: true,
+  extends: ['next/core-web-vitals'],
   overrides: [
     {
       files: ['**/*.tsx','**/*.ts','**/*.jsx','**/*.js'],
@@ -18,7 +19,8 @@ module.exports = {
     {
       files: ['**/components/ui/LazyImage.tsx'],
       rules: {
-        'no-restricted-syntax': 'off'
+        'no-restricted-syntax': 'off',
+        '@next/next/no-img-element': 'off'
       }
     }
   ],
