@@ -2,7 +2,7 @@ import { getHumeAccessToken } from "@/utils/getHumeAccessToken";
 import dynamic from "next/dynamic";
 import ErrorBoundary from "@/components/ErrorBoundary";
  
-const Chat = dynamic(() => import("@/components/Chat"), {
+const Chat = dynamic(() => import(/* webpackPreload: true */ "@/components/Chat"), {
   ssr: false,
 });
  
